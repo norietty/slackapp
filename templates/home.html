@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Flack50
+{% endblock  %}
+
+{% block channel %}
+    {% if session.username %}
+            <div  class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Create channel</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="text" id="channel-name" class="form-control" value="" /> 
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button data-dismiss="modal" type="button" id ="create"class="btn btn-default close">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">
+                    create channel</a>
+            </div>
+    {% endif%}
+{%endblock%}
+
+{% block content %}
+<div id="wrapper">
+    <div id="menu">
+        <p class="welcome">
+            <label class="mdb-main-label">select channel</label>
+            <select  id="channels-list" class="mdb-select md-form colorful-select dropdown-success">
+                {% for channel in channels %}
+                    <option>{{channel}}</option>
+                {%endfor%}
+            </select>
+        </p>
+        <p class="logout"><a id="username" href="#">{{session.username}}</a></p>
+        <div style="clear:both"></div>
+    </div>
+
+    <div id="chatbox">
+
+    </div>
+
+    <form onsubmit="reset();return false;" name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" size="63", value=""/>
+        <input  name="submitmsg" type="submit" id="submitmsg" value="send" />
+    </form>
+</div>
+{% endblock  %}
+{% block users %}
+    <h6>Active users</h6>
+    {% for user in users %}
+        <div>
+            <li>
+                <a herf="#">@{{user}}</a>
+            </li>
+        </div>
+    {% endfor%}
+{% endblock%}
