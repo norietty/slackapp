@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Flack50
+{% endblock  %}
+
+{% block content %}
+<div class="" style="margin:auto;width:50%">
+    <form class="channel" action="{{url_for('channel')}}" method="post">
+        {{ form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> </legend>
+            <div class="form-group">
+                {{ form.channel.label(class="form-control-label")}}
+                {{ form.channel(class="form-control")}}
+            </div>
+            <div class="form-group text-center">
+               <span id= "create"> {{ form.submit(class="btn btn-outline-info") }} </span>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+{% endblock  %}
